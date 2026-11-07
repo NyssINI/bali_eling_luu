@@ -62,4 +62,33 @@ class User extends Authenticatable
     {
         return ($this->role ?? 'user') === 'user';
     }
+
+    public function submissions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ActionSubmission::class)->latest('submitted_at');
+    }
+
+    public function level(): int
+    {
+        $xp = (int) ($this->xp_balance ?? 0);
+        return match (true) {
+            $xp >= 1500 => 5,
+            $xp >= 800 => 4,
+            $xp >= 400 => 3,
+            $xp >= 150 => 2,
+            default => 1,
+        };
+    }
+
+    public function levelTitle(): string
+    {
+        $xp = (int) ($this->xp_balance ?? 0);
+        return match (true) {
+            $xp >= 1500 => 'Duta Bali Lestari',
+            $xp >= 800 => 'Pahlawan Palemahan',
+            $xp >= 400 => 'Penjaga Alam',
+            $xp >= 150 => 'Krama Lestari',
+            default => 'Krama Peduli',
+        };
+    }
 }

@@ -85,6 +85,41 @@
     <!-- ===== GAMIFIKASI PALEMAHAN & DAILY QUESTS ===== -->
     <div id="gamifikasiPalemahan" class="mt-7"></div>
 
+    <!-- ===== STATISTIK BACKEND ===== -->
+    @if($stats)
+        <section class="mt-7" aria-labelledby="stats-judul">
+            <h2 id="stats-judul" class="text-[13px] font-bold uppercase tracking-wide text-muted">Statistik Akunmu (Backend)</h2>
+            <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                <div class="rounded-2xl border border-line bg-white p-4">
+                    <p class="text-[11px] font-bold uppercase tracking-wide text-muted">Total Pengajuan</p>
+                    <p class="mt-1 text-2xl font-extrabold text-forest">{{ $stats['total'] }}</p>
+                </div>
+                <div class="rounded-2xl border border-line bg-white p-4">
+                    <p class="text-[11px] font-bold uppercase tracking-wide text-muted">Pending</p>
+                    <p class="mt-1 text-2xl font-extrabold text-forest">{{ $stats['pending'] }}</p>
+                </div>
+                <div class="rounded-2xl border border-line bg-white p-4">
+                    <p class="text-[11px] font-bold uppercase tracking-wide text-muted">Terverifikasi</p>
+                    <p class="mt-1 text-2xl font-extrabold text-forest">{{ $stats['approved'] }}</p>
+                </div>
+                <div class="rounded-2xl border border-line bg-white p-4">
+                    <p class="text-[11px] font-bold uppercase tracking-wide text-muted">XP Balance</p>
+                    <p class="mt-1 text-2xl font-extrabold text-forest">{{ $stats['xp'] }}</p>
+                </div>
+                <div class="rounded-2xl border border-line bg-white p-4">
+                    <p class="text-[11px] font-bold uppercase tracking-wide text-muted">Level</p>
+                    <p class="mt-1 text-2xl font-extrabold text-forest">{{ $stats['level'] }}</p>
+                    <p class="text-xs text-muted">{{ $stats['levelTitle'] }}</p>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+                <a href="{{ route('challenges.index') }}" class="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white transition hover:bg-forest">Lihat Tantangan</a>
+                <a href="{{ route('riwayat') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Riwayat Aksi</a>
+                <a href="{{ route('profil.edit') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Edit Profil</a>
+            </div>
+        </section>
+    @endif
+
     <!-- ===== GRID ===== -->
     <div class="mt-7 grid gap-6 lg:mt-10 lg:grid-cols-12 lg:gap-8">
         <div class="contents lg:col-span-5 lg:flex lg:flex-col lg:gap-6">
