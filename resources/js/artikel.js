@@ -1,6 +1,11 @@
 
 import { ARTIKEL, cariArtikel } from './data_artikel.js';
 
+// Diisi oleh Blade sebelum modul ini dieksekusi (lihat artikel/index.blade.php).
+const ARTIKEL_URL = window.ARTIKEL_URL || '/artikel';
+const ASSET_URL = window.ASSET_URL || '';
+const HOME_URL = window.HOME_URL || '/';
+
 const isi = document.getElementById('isi');
 
 function esc(s) {
@@ -46,9 +51,9 @@ function kartu(a, kecil = false) {
             <div class="${kecil ? 'p-4' : 'p-5'}">
                 ${chip(a.kategori)}
 
-                <h3 class="mt-3 font-bold leading-snug text-forest transition group-hover:text-primary ${kecil ? 'text-[14px]' : 'text-base'}">
-                    ${esc(a.judul)}
-                </h3>
+                ${kecil
+                    ? `<h3 class="mt-3 font-bold leading-snug text-forest transition group-hover:text-primary text-[14px]">${esc(a.judul)}</h3>`
+                    : `<h2 class="mt-3 font-bold leading-snug text-forest transition group-hover:text-primary text-base">${esc(a.judul)}</h2>`}
 
                 <p class="mt-2 text-sm leading-relaxed text-muted">
                     ${esc(a.ringkas)}
@@ -116,7 +121,7 @@ function renderBlok(b) {
     if (b.t === "catatan") {
         return `
             <div class="mt-7 rounded-2xl border border-line bg-cream p-5 sm:p-6">
-                <p class="text-[11px] font-bold uppercase tracking-wide text-terra">
+                <p class="text-[11px] font-bold uppercase tracking-wide text-terra-deep">
                     ${esc(b.judul)}
                 </p>
                 <p class="mt-1.5 text-[13.5px] leading-relaxed text-muted sm:text-sm">
@@ -159,7 +164,7 @@ function renderDaftar() {
 
     isi.innerHTML = `
         <div class="max-w-3xl">
-            <span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1.5 text-[11px] font-bold text-primary">
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1.5 text-[11px] font-bold text-forest">
                 Artikel
             </span>
 
@@ -232,7 +237,7 @@ function renderArtikel(a) {
     `;
 }
 
-const id = new URLSearchParams(window.location.search).get('id');
+const id = window.ARTIKEL_ID || new URLSearchParams(window.location.search).get('id');
 const artikel = id ? cariArtikel(id) : null;
 
 if (artikel) {

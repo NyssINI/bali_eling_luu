@@ -2,6 +2,8 @@
 
 @section('title', 'Bali Eling Luu — Jaga Alam, Lestarikan Bali')
 
+@section('body_class', 'locked bg-cream font-sans text-ink')
+
 @section('content')
 {{-- SPLASH SCREEN --}}
 <div id="splash" class="splash" role="status" aria-label="Memuat">
@@ -34,7 +36,7 @@
                 <li><button type="button" onclick="openBaliElingScannerSafe()" class="whitespace-nowrap font-bold text-primary transition hover:text-forest">AI Scanner</button></li>
                 <li><a class="link-underline whitespace-nowrap transition hover:text-primary" href="#peta">Eco Map</a></li>
                 <li><a class="link-underline whitespace-nowrap transition hover:text-primary" href="#lapor">Lapor Luu</a></li>
-                <li><a class="link-underline whitespace-nowrap transition hover:text-primary" href="#panduan">Panduan Sampah</a></li>
+                <li><a class="link-underline whitespace-nowrap transition hover:text-primary" href="{{ route('panduan') }}">Panduan Sampah</a></li>
             </ul>
 
             {{-- Tombol menu mobile/tablet --}}
@@ -51,7 +53,7 @@
             <li><button type="button" onclick="openBaliElingScannerSafe(); closeMobileMenu()" class="block w-full rounded-lg px-3 py-2.5 text-left font-bold text-primary transition hover:bg-white">AI Scanner</button></li>
             <li><a class="block rounded-lg px-3 py-2.5 transition hover:bg-white hover:text-primary" href="#peta">Eco Map</a></li>
             <li><a class="block rounded-lg px-3 py-2.5 transition hover:bg-white hover:text-primary" href="#lapor">Lapor Luu</a></li>
-            <li><a class="block rounded-lg px-3 py-2.5 transition hover:bg-white hover:text-primary" href="#panduan">Panduan Sampah</a></li>
+            <li><a class="block rounded-lg px-3 py-2.5 transition hover:bg-white hover:text-primary" href="{{ route('panduan') }}">Panduan Sampah</a></li>
         </ul>
     </header>
 
@@ -63,8 +65,8 @@
             <div class="relative mx-auto max-w-shell px-5 pb-16 pt-14 sm:pb-24 sm:pt-20">
                 <div class="max-w-2xl">
                     <div class="flex flex-wrap items-center gap-2">
-                        <span class="inline-flex items-center gap-1.5 rounded-full bg-primary/12 px-3.5 py-1.5 text-xs font-extrabold text-primary ring-1 ring-primary/25"><span class="h-2 w-2 animate-pulse rounded-full bg-primary"></span>AI-Powered Environmental Action Platform</span>
-                        <span class="hidden text-[11px] font-bold uppercase tracking-wider text-terra sm:inline-block">Bali Smart Society</span>
+                        <span class="inline-flex items-center gap-1.5 rounded-full bg-primary/12 px-3.5 py-1.5 text-xs font-extrabold text-forest ring-1 ring-primary/25"><span class="h-2 w-2 rounded-full bg-primary"></span>AI-Powered Environmental Action Platform</span>
+                        <span class="hidden text-[11px] font-bold uppercase tracking-wider text-terra-deep sm:inline-block">Bali Smart Society</span>
                     </div>
                     <h1 class="mt-4 text-[2.2rem] font-extrabold leading-[1.12] tracking-tight text-forest sm:text-5xl lg:text-6xl">Dari Kesadaran Menjadi Tindakan Nyata untuk Bali.</h1>
                     <p class="mt-4 max-w-xl text-base leading-relaxed text-ink/80 sm:text-lg">Pindai sampahmu dengan AI Vision cerdas, dapatkan rekomendasi pemilahan sesuai tradisi &amp; regulasi Bali, serta temukan TPS3R dan Bank Sampah terdekat.</p>
@@ -105,7 +107,7 @@
         <section class="mx-auto max-w-shell px-5 py-16 sm:py-24">
             <div class="grid items-center gap-10 lg:grid-cols-2">
                 <div class="order-2 lg:order-1">
-                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-terra">Mengapa Penting</p>
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-terra-deep">Mengapa Penting</p>
                     <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">Mengapa Kita Harus Peduli?</h2>
                     <p class="mt-5 leading-relaxed text-muted">Kebersihan lingkungan menentukan kesehatan, kenyamanan, dan keindahan tempat kita tinggal. Dengan memilah sampah dari sumbernya, mengurangi plastik sekali pakai, dan tidak membuang sampah sembarangan, kita ikut menjaga ekosistem Bali tetap sehat.</p>
                     <ul class="mt-7 space-y-3 text-sm text-ink">
@@ -122,7 +124,7 @@
         {{-- KATEGORI SAMPAH --}}
         <section id="kategori" class="border-y border-line bg-white py-16 sm:py-24">
             <div class="mx-auto max-w-shell px-5">
-                <div class="max-w-2xl"><p class="text-xs font-bold uppercase tracking-[0.18em] text-terra">Panduan Sampah</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">Kenali Jenis Sampah</h2><p class="mt-4 text-muted">Empat kategori utama yang perlu kamu pahami sebelum memilah.</p></div>
+                <div class="max-w-2xl"><p class="text-xs font-bold uppercase tracking-[0.18em] text-terra-deep">Panduan Sampah</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">Kenali Jenis Sampah</h2><p class="mt-4 text-muted">Empat kategori utama yang perlu kamu pahami sebelum memilah.</p></div>
                 <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                     <article class="flex flex-col rounded-2xl border border-line bg-cream p-6 transition hover:-translate-y-1 hover:shadow-lg hover:shadow-forest/10"><span class="grid h-12 w-12 place-items-center rounded-xl bg-primary/12 text-2xl" aria-hidden="true">🍂</span><h3 class="mt-4 text-lg font-bold text-forest">Organik</h3><p class="mt-1.5 text-sm leading-relaxed text-muted">Sampah yang mudah terurai secara alami.</p><p class="mt-3 text-xs text-muted"><strong class="text-ink">Contoh:</strong> daun, sisa makanan.</p><a href="{{ url('/edukasi?jenis=organik') }}" class="mt-5 inline-block text-sm font-bold text-primary hover:underline">Pelajari →</a></article>
                     <article class="flex flex-col rounded-2xl border border-line bg-cream p-6 transition hover:-translate-y-1 hover:shadow-lg hover:shadow-forest/10"><span class="grid h-12 w-12 place-items-center rounded-xl bg-terra/15 text-2xl" aria-hidden="true">♻️</span><h3 class="mt-4 text-lg font-bold text-forest">Anorganik</h3><p class="mt-1.5 text-sm leading-relaxed text-muted">Material yang berpotensi didaur ulang.</p><p class="mt-3 text-xs text-muted"><strong class="text-ink">Contoh:</strong> botol plastik, kaleng.</p><a href="{{ url('/edukasi?jenis=anorganik') }}" class="mt-5 inline-block text-sm font-bold text-primary hover:underline">Pelajari →</a></article>
@@ -137,11 +139,11 @@
         <section id="peta" class="border-b border-line bg-cream/70 py-16 sm:py-24">
             <div class="mx-auto max-w-shell px-5">
                 <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-                    <div class="max-w-2xl"><span class="inline-block rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1 text-xs font-extrabold text-primary">Solusi Geospasial Nyata</span><h2 class="mt-3 text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">Bali Eco Map: Ke Mana Sampahmu Pergi?</h2><p class="mt-3 text-sm leading-relaxed text-muted sm:text-base">Peta interaktif sebaran fasilitas TPS 3R, Bank Sampah unit, dan Drop Box B3 terverifikasi di Bali. Temukan tempat terdekat dari rumahmu dan langsung dapatkan rute Google Maps.</p></div>
+                    <div class="max-w-2xl"><span class="inline-block rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1 text-xs font-extrabold text-forest">Solusi Geospasial Nyata</span><h2 class="mt-3 text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">Bali Eco Map: Ke Mana Sampahmu Pergi?</h2><p class="mt-3 text-sm leading-relaxed text-muted sm:text-base">Peta interaktif sebaran fasilitas TPS 3R, Bank Sampah unit, dan Drop Box B3 terverifikasi di Bali. Temukan tempat terdekat dari rumahmu dan langsung dapatkan rute Google Maps.</p></div>
                     <div class="shrink-0"><button type="button" id="btnLokasiSaya" class="flex items-center gap-2 rounded-xl bg-forest px-5 py-3 text-xs font-bold text-white shadow-md shadow-forest/15 transition hover:bg-deep active:scale-[0.98] sm:text-sm">📍 Cari Fasilitas Dekat Saya</button></div>
                 </div>
                 <div class="mt-8 grid gap-3 rounded-2xl border border-line bg-white p-4 shadow-sm sm:grid-cols-12">
-                    <div class="sm:col-span-4"><label for="filterPetaKab" class="mb-1 block text-xs font-bold text-forest">Pilih Kabupaten / Kota</label><select id="filterPetaKab" class="w-full rounded-xl border border-line bg-cream p-2.5 text-xs focus:border-primary focus:outline-none sm:text-sm"><option value="semua">Semua Wilayah Bali</option><option value="Denpasar">Kota Denpasar</option><option value="Badung">Kabupaten Badung</option><option value="Gianyar">Kabupaten Gianyar</option><option value="Tabanan">Kabupaten Tabanan</option><option value="Klungkung">Kabupaten Klungkung</option></select></div>
+                    <div class="sm:col-span-4"><label for="filterPetaKab" class="mb-1 block text-xs font-bold text-forest">Pilih Kabupaten / Kota</label><select id="filterPetaKab" class="w-full rounded-xl border border-line bg-cream p-2.5 text-xs focus:border-primary focus:outline-none sm:text-sm"><option value="semua">Semua Wilayah Bali</option><option value="Denpasar">Kota Denpasar</option><option value="Badung">Kabupaten Badung</option><option value="Gianyar">Kabupaten Gianyar</option><option value="Tabanan">Kabupaten Tabanan</option><option value="Klungkung">Kabupaten Klungkung</option><option value="Bangli">Kabupaten Bangli</option><option value="Buleleng">Kabupaten Buleleng</option><option value="Jembrana">Kabupaten Jembrana</option><option value="Karangasem">Kabupaten Karangasem</option></select></div>
                     <div class="sm:col-span-4"><label for="filterPetaKat" class="mb-1 block text-xs font-bold text-forest">Jenis Fasilitas</label><select id="filterPetaKat" class="w-full rounded-xl border border-line bg-cream p-2.5 text-xs focus:border-primary focus:outline-none sm:text-sm"><option value="semua">Semua Fasilitas</option><option value="tps3r">TPS 3R (Kompos &amp; Daur Ulang)</option><option value="bank_sampah">Bank Sampah (Uang/Tabungan)</option><option value="b3">Drop Box Limbah B3</option><option value="toss">TOSS (Tempat Olah Sampah Setempat)</option></select></div>
                     <div class="sm:col-span-4"><label for="inputCariPeta" class="mb-1 block text-xs font-bold text-forest">Cari Kata Kunci</label><input type="search" id="inputCariPeta" placeholder="Misal: Dalung, Sanur, Kertalangu..." class="w-full rounded-xl border border-line bg-cream p-2.5 text-xs focus:border-primary focus:outline-none sm:text-sm"></div>
                 </div>
@@ -157,7 +159,7 @@
 
         {{-- TIPS --}}
         <section id="tips" class="mx-auto max-w-shell px-5 py-16 sm:py-24">
-            <div class="max-w-2xl"><p class="text-xs font-bold uppercase tracking-[0.18em] text-terra">Tips Lingkungan</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">Langkah Kecil, Dampak Besar</h2></div>
+            <div class="max-w-2xl"><p class="text-xs font-bold uppercase tracking-[0.18em] text-terra-deep">Tips Lingkungan</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">Langkah Kecil, Dampak Besar</h2></div>
             <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 <li class="rounded-2xl border border-line bg-white p-6"><h3 class="font-bold text-forest">Bawa botol &amp; tas sendiri</h3><p class="mt-2 text-sm leading-relaxed text-muted">Kebiasaan paling sederhana untuk mengurangi sampah plastik.</p></li>
                 <li class="rounded-2xl border border-line bg-white p-6"><h3 class="font-bold text-forest">Kurangi plastik sekali pakai</h3><p class="mt-2 text-sm leading-relaxed text-muted">Pilih kemasan yang bisa digunakan ulang atau diisi ulang.</p></li>
@@ -171,7 +173,7 @@
         {{-- ARTIKEL --}}
         <section id="artikel" class="border-t border-line bg-white py-16 sm:py-24">
             <div class="mx-auto max-w-shell px-5">
-                <div class="flex flex-wrap items-end justify-between gap-4"><div><p class="text-xs font-bold uppercase tracking-[0.18em] text-terra">Artikel</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">Cerita dan Inspirasi untuk Bali</h2></div><a href="{{ url('/artikel') }}" class="text-sm font-bold text-primary hover:underline">Lihat semua →</a></div>
+                <div class="flex flex-wrap items-end justify-between gap-4"><div><p class="text-xs font-bold uppercase tracking-[0.18em] text-terra-deep">Artikel</p><h2 class="mt-3 text-3xl font-extrabold tracking-tight text-forest sm:text-4xl">Cerita dan Inspirasi untuk Bali</h2></div><a href="{{ url('/artikel') }}" class="text-sm font-bold text-primary hover:underline">Lihat semua →</a></div>
                 <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     <article class="group overflow-hidden rounded-2xl border border-line bg-cream"><div class="aspect-video overflow-hidden bg-line/60"><img src="{{ asset('assets/foto-jenis-sampah/organik.webp') }}" alt="Tumpukan canang sari dan sisa organik" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></div><div class="p-5"><span class="rounded-full bg-primary/12 px-3 py-1 text-[11px] font-bold text-primary">Pemilahan</span><h3 class="mt-3 font-bold leading-snug text-forest transition group-hover:text-primary">Cara Memilah Sampah di Rumah</h3><p class="mt-2 text-sm leading-relaxed text-muted">Langkah praktis memisahkan sampah tanpa ribet.</p><a href="{{ url('/artikel#memilah-di-rumah') }}" class="mt-4 inline-block text-sm font-bold text-primary hover:underline">Baca Selengkapnya</a></div></article>
                     <article class="group overflow-hidden rounded-2xl border border-line bg-cream"><div class="aspect-video overflow-hidden bg-line/60"><img src="{{ asset('assets/photo02.webp') }}" alt="Jalur setapak di tengah persawahan Bali" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></div><div class="p-5"><span class="rounded-full bg-terra/20 px-3 py-1 text-[11px] font-bold text-forest">Wisata</span><h3 class="mt-3 font-bold leading-snug text-forest transition group-hover:text-primary">Mengurangi Sampah Plastik Saat Berwisata</h3><p class="mt-2 text-sm leading-relaxed text-muted">Checklist sederhana sebelum berangkat.</p><a href="{{ url('/artikel#kurangi-plastik-saat-berwisata') }}" class="mt-4 inline-block text-sm font-bold text-primary hover:underline">Baca Selengkapnya</a></div></article>
@@ -190,7 +192,7 @@
         <nav class="fixed bottom-0 left-0 z-40 w-full border-t border-line bg-white/95 backdrop-blur lg:hidden" aria-label="Navigasi bawah">
             <ul class="mx-auto grid max-w-shell grid-cols-5">
                 <li><a href="#beranda" class="flex flex-col items-center gap-0.5 py-2.5 text-[10px] font-bold text-primary"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Beranda</a></li>
-                <li><button type="button" onclick="openBaliElingScannerSafe()" class="flex w-full flex-col items-center gap-0.5 py-2.5 text-[10px] font-semibold text-terra"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M4 16v2a2 2 0 0 0 2 2h2M16 4h2a2 2 0 0 1 2 2v2M16 20h2a2 2 0 0 0 2-2v-2"/><circle cx="12" cy="12" r="3"/></svg>Scan AI</button></li>
+                <li><button type="button" onclick="openBaliElingScannerSafe()" class="flex w-full flex-col items-center gap-0.5 py-2.5 text-[10px] font-semibold text-terra-deep"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M4 16v2a2 2 0 0 0 2 2h2M16 4h2a2 2 0 0 1 2 2v2M16 20h2a2 2 0 0 0 2-2v-2"/><circle cx="12" cy="12" r="3"/></svg>Scan AI</button></li>
                 <li><a href="#peta" class="flex flex-col items-center gap-0.5 py-2.5 text-[10px] font-semibold text-muted hover:text-primary"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Eco Map</a></li>
                 <li><a href="#lapor" class="flex flex-col items-center gap-0.5 py-2.5 text-[10px] font-semibold text-muted hover:text-primary"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Lapor</a></li>
                 <li><a href="{{ url('/dashboard') }}" class="flex flex-col items-center gap-0.5 py-2.5 text-[10px] font-semibold text-muted hover:text-primary"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M16 21v-6M8 21v-4M12 21V9M3 3v18h18"/></svg>Aksi</a></li>
@@ -202,7 +204,7 @@
     <footer class="border-t border-line bg-white pb-16 lg:pb-0">
         <div class="mx-auto grid max-w-shell gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4">
             <div><div class="flex items-center gap-2.5"><img src="{{ asset('assets/logo/logo-mark.webp') }}" alt="" aria-hidden="true" class="h-10 w-10 object-contain"><span class="text-base font-extrabold text-forest">Bali Eling Luu</span></div><p class="mt-4 text-sm leading-relaxed text-muted">AI-Powered Environmental Action Platform — dari kesadaran menjadi tindakan nyata untuk pelestarian lingkungan Bali.</p></div>
-            <nav aria-label="Navigasi footer"><p class="text-sm font-bold text-ink">Navigasi Utama</p><ul class="mt-4 space-y-2.5 text-sm text-muted"><li><a class="hover:text-primary" href="#beranda">Beranda</a></li><li><button type="button" onclick="openBaliElingScannerSafe()" class="text-left font-semibold hover:text-terra">📷 AI Waste Scanner</button></li><li><a class="hover:text-primary" href="#peta">🗺️ Bali Eco Map (TPS3R &amp; Bank Sampah)</a></li><li><a class="hover:text-primary" href="{{ url('/panduan') }}">Panduan Sampah</a></li><li><a class="hover:text-primary" href="#lapor">📢 Lapor Luu (Aduan Warga)</a></li><li><a class="hover:text-primary" href="{{ url('/dashboard') }}">📊 Dashboard &amp; Aksi Palemahan</a></li></ul></nav>
+            <nav aria-label="Navigasi footer"><p class="text-sm font-bold text-ink">Navigasi Utama</p><ul class="mt-4 space-y-2.5 text-sm text-muted"><li><a class="hover:text-primary" href="#beranda">Beranda</a></li><li><button type="button" onclick="openBaliElingScannerSafe()" class="text-left font-semibold hover:text-terra-deep">📷 AI Waste Scanner</button></li><li><a class="hover:text-primary" href="#peta">🗺️ Bali Eco Map (TPS3R &amp; Bank Sampah)</a></li><li><a class="hover:text-primary" href="{{ url('/panduan') }}">Panduan Sampah</a></li><li><a class="hover:text-primary" href="#lapor">📢 Lapor Luu (Aduan Warga)</a></li><li><a class="hover:text-primary" href="{{ url('/dashboard') }}">📊 Dashboard &amp; Aksi Palemahan</a></li></ul></nav>
             <div><p class="text-sm font-bold text-ink">Rujukan Regulasi &amp; Data</p><ul class="mt-4 space-y-2.5 text-sm text-muted"><li><a class="hover:text-primary" href="https://dlh.baliprov.go.id" target="_blank" rel="noopener">Dinas Lingkungan Hidup Bali</a></li><li><a class="hover:text-primary" href="https://sipsn.menlhk.go.id" target="_blank" rel="noopener">SIPSN — Data Sampah KLHK</a></li><li><span class="block text-xs text-muted">Pergub Bali No. 47/2019 (Pilah Berbasis Sumber)</span></li><li><span class="block text-xs text-muted">Pergub Bali No. 97/2018 (Batasi Sampah Plastik)</span></li></ul></div>
             <div><p class="text-sm font-bold text-ink">Terhubung</p><ul class="mt-4 space-y-2.5 text-sm text-muted"><li><a class="hover:text-primary" href="mailto:halo@balielingluu.id">halo@balielingluu.id</a></li><li class="pt-2"><span class="inline-block rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary">Bali Digifest 2026 Ready</span></li></ul></div>
         </div>
@@ -317,11 +319,16 @@
 </script>
 
 {{-- Urutan file dipertahankan: data terlebih dahulu, kemudian fitur yang menggunakannya. --}}
-<script src="{{ asset('js/data_sampah.js') }}"></script>
-<script src="{{ asset('js/data_statistik.js') }}"></script>
-<script src="{{ asset('js/data_lokasi_peta.js') }}"></script>
-<script src="{{ asset('js/peta.js') }}"></script>
-<script src="{{ asset('js/ai_scanner.js') }}"></script>
-<script src="{{ asset('js/eco_action.js') }}"></script>
-<script src="{{ asset('js/chat.js') }}"></script>
+@php
+    $jsv = static fn (string $file): int => filemtime(public_path($file));
+@endphp
+<script>window.BALI_MODEL_BASE = @json(asset('model') . '/');</script>
+<script src="{{ asset('js/data_sampah.js') }}?v={{ $jsv('js/data_sampah.js') }}"></script>
+<script src="{{ asset('js/data_statistik.js') }}?v={{ $jsv('js/data_statistik.js') }}"></script>
+<script src="{{ asset('js/data_lokasi_peta.js') }}?v={{ $jsv('js/data_lokasi_peta.js') }}"></script>
+<script src="{{ asset('js/peta.js') }}?v={{ $jsv('js/peta.js') }}"></script>
+<script src="{{ asset('model/model_config.js') }}?v={{ $jsv('model/model_config.js') }}"></script>
+<script src="{{ asset('js/ai_scanner.js') }}?v={{ $jsv('js/ai_scanner.js') }}"></script>
+<script src="{{ asset('js/eco_action.js') }}?v={{ $jsv('js/eco_action.js') }}"></script>
+<script src="{{ asset('js/chat.js') }}?v={{ $jsv('js/chat.js') }}"></script>
 @endpush

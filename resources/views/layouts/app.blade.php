@@ -58,9 +58,13 @@
 
                         terra: '#C99348',
 
+                        'terra-deep': '#8F611F',
+
+                        danger: '#C0392B',
+
                         ink: '#1C3026',
 
-                        muted: '#718078',
+                        muted: '#5F6E65',
 
                         line: '#DDE4DE',
 
@@ -498,7 +502,7 @@
 </head>
 
 
-<body class="locked bg-cream font-sans text-ink">
+<body class="@yield('body_class', 'bg-cream font-sans text-ink')">
 
     @yield('content')
 
