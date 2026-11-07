@@ -14,7 +14,9 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Mass-assignable attributes.
+     * Penting: 'role' dan 'xp_balance' TIDAK boleh diisi dari form
+     * registrasi publik — harus di-set eksplisit di backend.
      *
      * @var list<string>
      */
@@ -22,10 +24,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
+        'phone',
+        'avatar_path',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Attributes that should be hidden for serialization.
      *
      * @var list<string>
      */
@@ -44,6 +49,17 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'xp_balance' => 'integer',
         ];
+    }
+
+    public function isAdmin(): bool
+    {
+        return ($this->role ?? 'user') === 'admin';
+    }
+
+    public function isUser(): bool
+    {
+        return ($this->role ?? 'user') === 'user';
     }
 }

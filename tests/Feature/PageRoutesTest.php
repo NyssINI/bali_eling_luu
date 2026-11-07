@@ -2,22 +2,35 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PageRoutesTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_public_pages_return_successfully(): void
     {
         $this->withoutVite();
 
         $this->get('/')->assertOk();
-        $this->get('/dashboard')->assertOk()->assertSee('Halo, Putu!');
-        $this->get('/dashboard')->assertSee('Dampakmu Hari Ini');
-        $this->get('/dashboard')->assertSee('gamifikasiPalemahan');
+        // Dashboard kini dilindungi auth: tamu diarahkan ke login
+        $this->get('/dashboard')->assertRedirect(route('login'));
         $this->get('/edukasi?jenis=organik')->assertOk()->assertSee('Organik — Jenis Sampah');
         $this->get('/edukasi?jenis=tidak-ada')->assertOk()->assertSee('Anorganik — Jenis Sampah');
         $this->get('/panduan')->assertOk()->assertSee('Pilah Sampah dengan Benar');
         $this->get('/artikel')->assertOk();
+        $this->get('/login')->assertOk();
+        $this->get('/register')->assertOk();
+    }
+
+    public function test_dashboard_shows_for_authenticated_user(): void
+    {
+        $this->withoutVite();
+        $user = User::factory()->create(['name' => 'Putu Test']);
+
+        $this->actingAs($user)->get('/dashboard')->assertOk()->assertSee('Halo, Putu Test!');
     }
 
     public function test_feature_assets_are_present(): void

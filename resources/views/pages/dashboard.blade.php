@@ -69,7 +69,7 @@
                 </svg>
             </span>
             <div class="min-w-0">
-                <h1 class="text-[22px] font-extrabold leading-tight tracking-tight text-forest sm:text-3xl">Halo, Putu!</h1>
+                <h1 class="text-[22px] font-extrabold leading-tight tracking-tight text-forest sm:text-3xl">Halo, {{ auth()->user()?->name ?? 'Putu' }}!</h1>
                 <p class="mt-0.5 text-[12.5px] text-muted sm:text-sm">Yuk lanjutkan aksi pelestarian alam Bali hari ini.</p>
             </div>
         </div>

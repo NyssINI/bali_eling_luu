@@ -1,0 +1,43 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
+class DemoSeeder extends Seeder
+{
+    /**
+     * Akun demo untuk testing/juri — JANGAN dipakai di production.
+     * Password: BaliElingLuuDemo2026!
+     */
+    public function run(): void
+    {
+        $password = Hash::make('BaliElingLuuDemo2026!');
+
+        User::firstOrCreate(
+            ['email' => 'demo.user@bali-eling-luu.test'],
+            [
+                'name' => 'Demo User',
+                'username' => 'demo-user',
+                'phone' => '081234567890',
+                'role' => 'user',
+                'xp_balance' => 0,
+                'password' => $password,
+            ]
+        );
+
+        User::firstOrCreate(
+            ['email' => 'demo.admin@bali-eling-luu.test'],
+            [
+                'name' => 'Demo Admin',
+                'username' => 'demo-admin',
+                'phone' => '081234567899',
+                'role' => 'admin',
+                'xp_balance' => 0,
+                'password' => $password,
+            ]
+        );
+    }
+}
