@@ -38,6 +38,12 @@ Route::get('/tantangan', [ChallengeController::class, 'index'])
 Route::get('/tantangan/{challenge:slug}', [ChallengeController::class, 'show'])
     ->name('challenges.show');
 
+Route::get('/eco-impact', App\Http\Controllers\EcoImpactController::class)
+    ->name('eco-impact');
+
+Route::get('/leaderboard', App\Http\Controllers\LeaderboardController::class)
+    ->name('leaderboard');
+
 // Authentication
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');

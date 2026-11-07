@@ -12,6 +12,7 @@ class VerifyActionService
     public function __construct(
         protected XpService $xp,
         protected AuditService $audit,
+        protected BadgeService $badges,
     ) {}
 
     public function approve(User $admin, ActionSubmission $submission): ActionSubmission
@@ -49,6 +50,8 @@ class VerifyActionService
                 'status' => 'approved',
                 'xp_reward' => $xpReward,
             ]);
+
+            $this->badges->awardEligible($locked->user->fresh());
 
             return $locked->fresh('challenge');
         });
