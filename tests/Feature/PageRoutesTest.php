@@ -11,10 +11,12 @@ class PageRoutesTest extends TestCase
         $this->withoutVite();
 
         $this->get('/')->assertOk();
-        $this->get('/dashboard')->assertOk()->assertSee('Dashboard Aksi');
-        $this->get('/edukasi?jenis=organik')->assertOk()->assertSee('Organik');
-        $this->get('/edukasi?jenis=tidak-ada')->assertOk()->assertSee('Edukasi Sampah');
-        $this->get('/panduan')->assertOk()->assertSee('Panduan Sampah');
+        $this->get('/dashboard')->assertOk()->assertSee('Halo, Putu!');
+        $this->get('/dashboard')->assertSee('Dampakmu Hari Ini');
+        $this->get('/dashboard')->assertSee('gamifikasiPalemahan');
+        $this->get('/edukasi?jenis=organik')->assertOk()->assertSee('Organik — Jenis Sampah');
+        $this->get('/edukasi?jenis=tidak-ada')->assertOk()->assertSee('Anorganik — Jenis Sampah');
+        $this->get('/panduan')->assertOk()->assertSee('Pilah Sampah dengan Benar');
         $this->get('/artikel')->assertOk();
     }
 
@@ -23,6 +25,7 @@ class PageRoutesTest extends TestCase
         foreach ([
             'js/ai_scanner.js',
             'js/chat.js',
+            'js/data_lokasi.js',
             'js/data_lokasi_peta.js',
             'js/data_sampah.js',
             'js/data_statistik.js',

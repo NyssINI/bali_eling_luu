@@ -133,7 +133,7 @@
             </span>
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-base font-extrabold text-forest">${lvl.gelar}</h3>
+                <h2 class="text-base font-extrabold text-forest">${lvl.gelar}</h2>
                 <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-primary text-white">Lvl ${lvl.level}</span>
               </div>
               <p class="text-xs text-muted mt-0.5">${state.xp} XP Palemahan • Menuju Level Berikutnya (${lvl.nextXp} XP)</p>
@@ -163,7 +163,7 @@
         <div>
           <div class="flex items-center justify-between mb-3.5">
             <div>
-              <h4 class="text-sm font-extrabold text-forest">Tantangan Harian Hari Ini</h4>
+              <h3 class="text-sm font-extrabold text-forest">Tantangan Harian Hari Ini</h3>
               <p class="text-xs text-muted">Selesaikan aksi untuk mengumpulkan poin kontribusi</p>
             </div>
             <span class="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
@@ -227,9 +227,9 @@
             <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-danger/10 text-danger border border-danger/20">
               Bali Smart Society
             </span>
-            <h3 class="text-2xl font-extrabold text-forest tracking-tight">
+            <h2 class="text-2xl font-extrabold text-forest tracking-tight">
               Lapor Tumpukan Sampah Liar
-            </h3>
+            </h2>
             <p class="text-xs sm:text-sm text-muted leading-relaxed">
               Temukan sampah meluap di pantai, got tersumbat, atau tumpukan liar di pinggir jalan Bali? Laporkan langsung bersama titik koordinat agar dapat ditindaklanjuti komunitas & petugas.
             </p>
@@ -277,7 +277,7 @@
         <!-- Feed Laporan Komunitas Terkini -->
         <div class="pt-6 border-t border-line space-y-4">
           <div class="flex items-center justify-between">
-            <h4 class="text-sm font-extrabold text-forest">Feed Laporan Warga Terkini</h4>
+            <h3 class="text-sm font-extrabold text-forest">Feed Laporan Warga Terkini</h3>
             <span class="text-xs text-muted">${state.reports.length} Laporan Tercatat</span>
           </div>
 
@@ -290,7 +290,7 @@
                   </span>
                   <span class="text-[10px] text-muted">${r.tanggal}</span>
                 </div>
-                <h5 class="text-xs font-bold text-forest leading-snug">${esc(r.judul)}</h5>
+                <h4 class="text-xs font-bold text-forest leading-snug">${esc(r.judul)}</h4>
                 <p class="text-[11px] text-muted leading-relaxed">${esc(r.deskripsi)}</p>
                 <div class="pt-2 border-t border-line/60 flex items-center justify-between text-[11px] text-muted font-medium">
                   <span> ${esc(r.lokasi)}</span>

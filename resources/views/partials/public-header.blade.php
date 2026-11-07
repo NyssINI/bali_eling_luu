@@ -6,11 +6,27 @@
         </a>
 
         <ul class="hidden items-center gap-6 text-sm font-semibold text-ink md:flex">
-            <li><a href="{{ route('home') }}" class="transition hover:text-primary">Beranda</a></li>
-            <li><a href="{{ route('panduan') }}" class="transition hover:text-primary">Panduan</a></li>
+            <li>
+                <a href="{{ route('home') }}"
+                   @if(($navAktif ?? null) === 'beranda') aria-current="page" class="font-bold text-primary"
+                   @else class="transition hover:text-primary" @endif>Beranda</a>
+            </li>
+            <li>
+                <a href="{{ route('panduan') }}"
+                   @if(in_array($navAktif ?? null, ['panduan', 'edukasi'], true)) aria-current="page" class="font-bold text-primary"
+                   @else class="transition hover:text-primary" @endif>Panduan</a>
+            </li>
             <li><a href="{{ route('home') }}#peta" class="transition hover:text-primary">Eco Map</a></li>
-            <li><a href="{{ route('dashboard') }}" class="transition hover:text-primary">Dashboard</a></li>
-            <li><a href="{{ route('artikel.index') }}" class="font-bold text-primary">Artikel</a></li>
+            <li>
+                <a href="{{ route('dashboard') }}"
+                   @if(($navAktif ?? null) === 'dashboard') aria-current="page" class="font-bold text-primary"
+                   @else class="transition hover:text-primary" @endif>Dashboard</a>
+            </li>
+            <li>
+                <a href="{{ route('artikel.index') }}"
+                   @if(($navAktif ?? null) === 'artikel') aria-current="page" class="font-bold text-primary"
+                   @else class="transition hover:text-primary" @endif>Artikel</a>
+            </li>
         </ul>
 
         <a href="{{ route('home') }}" class="text-sm font-bold text-primary md:hidden">Beranda</a>
