@@ -73,4 +73,23 @@ Route::middleware('auth')->group(function () {
 // Admin (role: admin only, cek di backend via middleware)
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', AdminDashboardController::class)->name('dashboard');
+
+    Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{user}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
+    Route::patch('/users/{user}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
+
+    Route::get('/challenges', [App\Http\Controllers\Admin\ChallengeAdminController::class, 'index'])->name('challenges.index');
+    Route::get('/challenges/create', [App\Http\Controllers\Admin\ChallengeAdminController::class, 'create'])->name('challenges.create');
+    Route::post('/challenges', [App\Http\Controllers\Admin\ChallengeAdminController::class, 'store'])->name('challenges.store');
+    Route::get('/challenges/{challenge}/edit', [App\Http\Controllers\Admin\ChallengeAdminController::class, 'edit'])->name('challenges.edit');
+    Route::patch('/challenges/{challenge}', [App\Http\Controllers\Admin\ChallengeAdminController::class, 'update'])->name('challenges.update');
+    Route::delete('/challenges/{challenge}', [App\Http\Controllers\Admin\ChallengeAdminController::class, 'destroy'])->name('challenges.destroy');
+
+    Route::get('/verifikasi', [App\Http\Controllers\Admin\VerificationController::class, 'index'])->name('verifications.index');
+    Route::get('/verifikasi/{submission}', [App\Http\Controllers\Admin\VerificationController::class, 'show'])->name('verifications.show');
+    Route::post('/verifikasi/{submission}/setujui', [App\Http\Controllers\Admin\VerificationController::class, 'approve'])->name('verifications.approve');
+    Route::post('/verifikasi/{submission}/tolak', [App\Http\Controllers\Admin\VerificationController::class, 'reject'])->name('verifications.reject');
+
+    Route::get('/xp', [App\Http\Controllers\Admin\LogController::class, 'xpHistory'])->name('xp.index');
+    Route::get('/audit', [App\Http\Controllers\Admin\LogController::class, 'auditLog'])->name('audit.index');
 });

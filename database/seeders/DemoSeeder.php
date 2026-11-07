@@ -16,28 +16,35 @@ class DemoSeeder extends Seeder
     {
         $password = Hash::make('BaliElingLuuDemo2026!');
 
-        User::firstOrCreate(
-            ['email' => 'demo.user@bali-eling-luu.test'],
-            [
-                'name' => 'Demo User',
-                'username' => 'demo-user',
-                'phone' => '081234567890',
-                'role' => 'user',
-                'xp_balance' => 0,
-                'password' => $password,
-            ]
+        $this->ensureUser(
+            email: 'demo.user@bali-eling-luu.test',
+            name: 'Demo User',
+            username: 'demo-user',
+            phone: '081234567890',
+            role: 'user',
+            password: $password,
         );
 
-        User::firstOrCreate(
-            ['email' => 'demo.admin@bali-eling-luu.test'],
-            [
-                'name' => 'Demo Admin',
-                'username' => 'demo-admin',
-                'phone' => '081234567899',
-                'role' => 'admin',
-                'xp_balance' => 0,
-                'password' => $password,
-            ]
+        $this->ensureUser(
+            email: 'demo.admin@bali-eling-luu.test',
+            name: 'Demo Admin',
+            username: 'demo-admin',
+            phone: '081234567899',
+            role: 'admin',
+            password: $password,
         );
+    }
+
+    private function ensureUser(string $email, string $name, string $username, ?string $phone, string $role, string $password): void
+    {
+        $user = User::firstOrNew(['email' => $email]);
+        $user->forceFill([
+            'name' => $name,
+            'username' => $username,
+            'phone' => $phone,
+            'role' => $role,
+            'xp_balance' => (int) ($user->xp_balance ?? 0),
+            'password' => $password,
+        ])->save();
     }
 }
