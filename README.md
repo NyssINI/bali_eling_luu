@@ -1,59 +1,109 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Bali Eling Luu — Dari Sampah, Untuk Bali
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Platform Laravel untuk aksi nyata pengelolaan sampah Bali: edukasi, pemilahan, AI Vision, Eco Map, bukti terverifikasi, XP/level/badge, dan reward simulasi.
 
-## About Laravel
+## 1. Nama project
+Bali Eling Luu — Dari Sampah, Untuk Bali
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 2. Deskripsi
+Platform digital yang menghubungkan masyarakat dengan pemilahan sampah dan fasilitas pengelolaan sampah di Bali, mengapresiasi kontribusi lewat XP, serta mencatat dampak secara terukur. Prinsip: **Aksi Nyata → Bukti → Verifikasi → Reward → Dampak.**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 3. Permasalahan yang diselesaikan
+- Masyarakat tidak tahu cara memilah sampah rumah tangga dan tradisi Bali (canang, banten).
+- Warga tidak tahu tempat pembuangan terdekat (TPS 3R, Bank Sampah, Drop Box B3).
+- Kontribusi warga tidak tercatat dan tidak diapresiasi.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 4. Solusi
+- AI Vision (TensorFlow.js MobileNet, `public/model/`) di perangkat pengguna.
+- Panduan pemilahan 4 kategori + edukasi + artikel.
+- Eco Map 18 titik fasilitas Bali (Leaflet).
+- Alur aksi terverifikasi: unggah bukti → admin periksa → XP → reward.
 
-## Learning Laravel
+## 5. Teknologi
+- Laravel 12, PHP 8.5, MySQL 8, Blade, Tailwind (Vite + CDN runtime), JavaScript classic (`public/js`), Pest + PHPUnit.
+- Auth custom Blade (session), Middleware `role:admin`, Policies, FormRequests, Storage `local` (private), Transactions + `lockForUpdate`.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 6. Fitur
+### Publik
+Landing, Panduan (`/panduan`), Edukasi (`/edukasi?jenis=`), Artikel, Tantangan (`/tantangan`), Eco Impact (`/eco-impact`), Leaderboard (`/leaderboard`), Login/Register.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### User (auth)
+Dashboard (`/dashboard`), Profil (`/profil`), Tantangan + Kirim Bukti (`/aksi`), Riwayat (`/riwayat`), Eling Rewards (`/rewards`), Riwayat Penukaran (`/rewards/riwayat`), Dashboard gamifikasi Palemahan.
 
-## Laravel Sponsors
+### Admin (`/admin`, role admin)
+Dashboard statistik, Kelola Pengguna, Kelola Tantangan, Verifikasi Aksi (approve/reject + XP + audit), Kelola Reward, Permintaan Penukaran (pending→approved→processing→completed/rejected), Riwayat XP, Audit Log.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 7. Arsitektur
+```
+Browser (Blade + Tailwind + classic JS)
+  → Routes (public / user auth / admin role)
+  → Controllers (thin) → Services (Verify, Xp, Reward, Badge, Audit)
+  → Models + Policies + FormRequests
+  → MySQL + storage/app/private/bukti
+```
+Lihat `docs/MASTER_PLAN.md`.
 
-### Premium Partners
+## 8. Database
+Tabel: `users`, `challenges`, `action_submissions`, `action_evidences`, `xp_transactions`, `rewards`, `reward_redemptions`, `partner_locations`, `waste_deposits`, `badges`, `user_badges`, `audit_logs` (+ bawaan Laravel). FK, index, unique (`hash` bukti, `action_submission_id` di XP, `user_id+badge_id`), enum status, soft delete (challenges/rewards/users), transaction untuk XP/stok.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 9. Instalasi lokal
+```bash
+composer install
+npm ci && npm run build
+cp .env.example .env
+# sesuaikan DB_CONNECTION=mysql, DB_DATABASE=bali_eling_luu
+php artisan key:generate
+php artisan migrate --force
+php artisan db:seed --class=ChallengeSeeder --force
+php artisan db:seed --class=RewardSeeder --force
+php artisan db:seed --class=PartnerSeeder --force
+php artisan db:seed --class=DemoSeeder --force
+php artisan serve --host=127.0.0.1 --port=8012
+```
+Atau pakai Herd: link folder sebagai site `bali-eling-luu.test`, set `APP_URL` accordingly.
 
-## Contributing
+## 10. Konfigurasi `.env`
+Lihat `.env.example` (MySQL, `DB_DATABASE=bali_eling_luu`). Jangan commit `.env`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 11. Migration
+`php artisan migrate --force` — 18 migration (users → challenges/submissions/evidences → audit/XP → rewards/redemptions/badges → partners/deposits).
 
-## Code of Conduct
+## 12. Seeder
+- `ChallengeSeeder` (5 tantangan 30/25/20/30/35 XP)
+- `RewardSeeder` (6 reward + 7 badge)
+- `PartnerSeeder` (18 Eco Map)
+- `DemoSeeder` (akun demo saja)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 13. Akun demo (testing/juri saja — bukan production)
+- User: `demo.user@bali-eling-luu.test` / `BaliElingLuuDemo2026!`
+- Admin: `demo.admin@bali-eling-luu.test` / `BaliElingLuuDemo2026!`
+- Alur uji: login user → dashboard → tantangan → kirim bukti → pending → logout → login admin → verifikasi approve → logout → login user → XP naik → Rewards tukar pulsa → admin proses DEMO → completed. Ulangi dengan tolak.
+- Lihat `docs/TEST_REPORT.md`.
 
-## Security Vulnerabilities
+## 14. Testing
+`php artisan test` → **46 passed (189 assertions)** (Auth, Action, Admin, Reward, EcoImpact, E2E, Security, PageRoutes). Detail di `docs/TEST_REPORT.md`.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 15. Deployment
+Lihat `docs/DEPLOYMENT.md` (VPS Nginx+MySQL, HTTPS, queue, backup/restore, smoke test). **Bukan Vercel untuk backend Laravel.**
 
-## License
+## 16. Batasan MVP
+- Reward pulsa adalah **simulasi DEMO** — tidak ada transfer sungguhan sampai ada kontrak provider + pendanaan resmi. Semua penukaran dilabeli DEMO.
+- Angka impact hanya dari DB valid; “didaur ulang” tidak diklaim tanpa proses mitra.
+- Bukti tersimpan privat; verifikasi butuh admin aktif.
+- AI Vision 65% pada hold-out segar (butuh foto HP Bali + retrain untuk ≥80%).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 17. Roadmap
+Integrasi provider pulsa resmi, verifikasi mitra otomatis (QR/gps), notifikasi, API mobile, retrain model, perluasan kota, dashboard pemerintah.
+
+## 18. Screenshot
+- Splash: `docs/screenshots/01-splash.jpg`
+- Tantangan: `docs/screenshots/02-tantangan.jpg`
+- Eco Impact: `docs/screenshots/04-eco-impact.jpg`
+- Rewards DEMO: `docs/screenshots/05-rewards.jpg`
+- Dashboard user: `docs/screenshots/06-dashboard.jpg`
+
+## 19. URL production
+Belum di-deploy. Saat deploy, isi URL final di sini (jangan URL contoh).
+
+## 20. Repository
+GitHub: `https://github.com/NyssINI/bali_eling_luu` · branch `main` · situs statis live tetap sebagai acuan sampai parity backend teruji.
