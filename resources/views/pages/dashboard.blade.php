@@ -115,6 +115,7 @@
             <div class="mt-3 flex flex-wrap gap-2">
                 <a href="{{ route('challenges.index') }}" class="rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white transition hover:bg-forest">Lihat Tantangan</a>
                 <a href="{{ route('riwayat') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Riwayat Aksi</a>
+                <a href="{{ route('rewards.index') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Eling Rewards</a>
                 <a href="{{ route('profil.edit') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Edit Profil</a>
             </div>
         </section>

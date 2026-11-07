@@ -68,6 +68,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/bukti/{evidence}', [EvidenceController::class, 'show'])
         ->name('bukti.show');
+
+    Route::get('/rewards', [App\Http\Controllers\RewardController::class, 'index'])
+        ->name('rewards.index');
+    Route::post('/rewards/tukar', [App\Http\Controllers\RewardController::class, 'store'])
+        ->name('rewards.store');
+    Route::get('/rewards/riwayat', [App\Http\Controllers\RewardController::class, 'history'])
+        ->name('rewards.history');
 });
 
 // Admin (role: admin only, cek di backend via middleware)
@@ -92,4 +99,18 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
     Route::get('/xp', [App\Http\Controllers\Admin\LogController::class, 'xpHistory'])->name('xp.index');
     Route::get('/audit', [App\Http\Controllers\Admin\LogController::class, 'auditLog'])->name('audit.index');
+
+    Route::get('/rewards', [App\Http\Controllers\Admin\RewardAdminController::class, 'index'])->name('rewards.index');
+    Route::get('/rewards/create', [App\Http\Controllers\Admin\RewardAdminController::class, 'create'])->name('rewards.create');
+    Route::post('/rewards', [App\Http\Controllers\Admin\RewardAdminController::class, 'store'])->name('rewards.store');
+    Route::get('/rewards/{reward}/edit', [App\Http\Controllers\Admin\RewardAdminController::class, 'edit'])->name('rewards.edit');
+    Route::patch('/rewards/{reward}', [App\Http\Controllers\Admin\RewardAdminController::class, 'update'])->name('rewards.update');
+    Route::delete('/rewards/{reward}', [App\Http\Controllers\Admin\RewardAdminController::class, 'destroy'])->name('rewards.destroy');
+
+    Route::get('/penukaran', [App\Http\Controllers\Admin\RedemptionAdminController::class, 'index'])->name('redemptions.index');
+    Route::get('/penukaran/{redemption}', [App\Http\Controllers\Admin\RedemptionAdminController::class, 'show'])->name('redemptions.show');
+    Route::post('/penukaran/{redemption}/setujui', [App\Http\Controllers\Admin\RedemptionAdminController::class, 'approve'])->name('redemptions.approve');
+    Route::post('/penukaran/{redemption}/proses', [App\Http\Controllers\Admin\RedemptionAdminController::class, 'process'])->name('redemptions.process');
+    Route::post('/penukaran/{redemption}/selesai', [App\Http\Controllers\Admin\RedemptionAdminController::class, 'complete'])->name('redemptions.complete');
+    Route::post('/penukaran/{redemption}/tolak', [App\Http\Controllers\Admin\RedemptionAdminController::class, 'reject'])->name('redemptions.reject');
 });

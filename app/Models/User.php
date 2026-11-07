@@ -91,4 +91,14 @@ class User extends Authenticatable
             default => 'Krama Peduli',
         };
     }
+
+    public function badges(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(UserBadge::class);
+    }
+
+    public function redemptions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(RewardRedemption::class)->latest();
+    }
 }

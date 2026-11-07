@@ -30,6 +30,8 @@
         <a href="{{ route('admin.challenges.index') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Kelola Tantangan</a>
         <a href="{{ route('admin.verifications.index') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Verifikasi Aksi ({{ $pendingSubmissions }})</a>
         <a href="{{ route('admin.xp.index') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Riwayat XP</a>
+        <a href="{{ route('admin.rewards.index') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Kelola Reward</a>
+        <a href="{{ route('admin.redemptions.index') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Penukaran</a>
         <a href="{{ route('admin.audit.index') }}" class="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-forest transition hover:border-primary hover:text-primary">Audit Log</a>
     </div>
 
